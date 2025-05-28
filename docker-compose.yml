@@ -1,0 +1,34 @@
+services:
+  db:
+    image: postgis/postgis:15-3.3
+    container_name: guia_bar_db
+    restart: always
+    environment:
+      POSTGRES_DB: guia_bares
+      POSTGRES_USER: guia_admin
+      POSTGRES_PASSWORD: guia123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks: 
+      - guia_network
+
+  redis:
+    image: redis:7.2-alpine
+    container_name: guia_bar_redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - guia_network
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  guia_network:
+    driver: bridge
