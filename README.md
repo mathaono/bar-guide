@@ -5,9 +5,9 @@ Projeto Guia de Bares SP
 -----------------------------------------------------------------
 
 1. Instalação WSL (Ubuntu 22)
-
+OBS: Caso o WSL já esteja instalado, pule para o próximo passo
     1.1 Abra o PowerShell como administrador e execute o seguinte comando:
-
+        
         wsl --install -d Ubuntu-22.04
 
     1.2 Reinicie o computador e configure o nome e senha de usuário no primeiro login do Ubuntu via terminal 
@@ -16,7 +16,7 @@ Projeto Guia de Bares SP
 
         sudo apt update && sudo apt upgrade -y
 
-OBS: Caso o WSL já esteja instalado, pule para o próximo passo
+
 
 
 2. Instalação Docker no WSL
@@ -84,3 +84,37 @@ OBS: Caso você já possua um container do PostgreSQL, a base de dados não ser�
     6.1 Acesse a pasta do backend:
 
         cd /mnt/c/path-do-projeto-clonado/bar-guide/apps/backend
+
+    6.2 Crie o ambiente virtual Python:
+
+        python -m venv venv
+
+    6.3 Ative o ambiente:
+
+        source venv/bin/activate
+
+    6.4 Instale o pip no WSL (caso ainda não esteja instalado):
+
+        sudo apt install python3-pip -y
+
+    6.5 Crie o arquivo de dependências:
+
+        Nesse ponto, o arquivo requirements.txt já está criado com todas as dependências, mas caso não apareça o arquivo dentro de /backend, só executar o comando abaixo e incluir as dependências dentro dele
+
+        touch requirements.txt
+
+        dependências:
+                fastapi
+                uvicorn[standard]
+                sqlalchemy
+                asyncpg
+                geoalchemy2
+                psycopg2-binary
+                alembic
+                python-dotenv
+                pydantic
+                redis
+
+    6.6 Use o pip para instalar os pacotes, executando o requirements
+
+        pip install -r requirements.txt
