@@ -8,3 +8,5 @@ alembic
 python-dotenv
 pydantic
 redis
+alembic
+pydantic-settings

@@ -25,6 +25,22 @@ services:
     networks:
       - guia_network
 
+  backend:
+    build:
+      context: ./apps/backend
+    container_name: guia_bar_backend
+    restart: always
+    volumes:
+      - ./apps/backend:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+    networks:
+      - guia_network
+
+
 volumes:
   postgres_data:
   redis_data:

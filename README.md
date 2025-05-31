@@ -43,6 +43,8 @@ OBS: Caso o WSL já esteja instalado, pule para o próximo passo
 
         docker-compose up -d
 
+        OBS: Esse comando deve ser executado sempre após reiniciar/ligar o pc (WSL); Docker Desktop(Windows) também deve estar rodando
+
     3.3 Rode o seguinte comando para verificar se os containers estão rodando
 
         docker ps
@@ -54,7 +56,8 @@ OBS: Caso você já possua um container do PostgreSQL, a base de dados não ser�
     4.1 Comandos para instalação e conexão do client postgres:
 
         sudo apt install postgresql-client -y
-        PGPASSWORD=postgres psql -h localhost -U postgres
+        
+        docker exec -it id-do-container psql -U guia_admin -d guia_bares (infos de user e dbname estão no arquivo .env)
 
     4.2 Dentro do PostgreSQL, crie a base de dados:
 
@@ -63,6 +66,10 @@ OBS: Caso você já possua um container do PostgreSQL, a base de dados não ser�
     4.3 Comando para listar as bases de dados criadas no PostgreSQL (Comando deve ser executado ainda dentro do terminal do PostgreSQL)
 
         \l ou \list
+
+    4.4 Conectando à uma base de dados:
+
+        \c nome_da_base
 
 5. Instalação do Python 3.11 no WSL
 
